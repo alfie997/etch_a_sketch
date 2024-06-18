@@ -12,8 +12,25 @@ const r = document.querySelector(":root");
 r.style.setProperty("--square-height", `${height}px`);
 r.style.setProperty("--square-width", `${width}px`);
 
+// function addSquares(index) {
+//     const square = document.createElement("div");
+//     square.classList.add("square");
+//     container.appendChild(square);
+//     squares.push(square);
+//     square.textContent = box;
+//     box++;
+// }
+
 resizer.addEventListener("click", (e) => {
-    let newInput = parseInt(prompt());
+    // let newInput = parseInt(prompt());
+    let newInput = 0;
+    while (newInput <= 0 || newInput >= 101) {
+        newInput = prompt();
+        if (newInput === null) {
+            return;
+        }
+    }
+
     let product = newInput * newInput;
     let index = 0;
 
@@ -24,19 +41,21 @@ resizer.addEventListener("click", (e) => {
 
     if (input > newInput) {
         index = (squares.length-1) - product;
+        input = newInput;
         for (let i = 0; i <= index; i++) {
             container.removeChild(container.lastElementChild);
             squares.pop();
         }
     } else if (input < newInput) {
+        input = newInput;
         index = product - (squares.length-1);
         for (let i = 1; i < index; i++) {
             const square = document.createElement("div");
             square.classList.add("square");
             container.appendChild(square);
             squares.push(square);
-            square.textContent = box;
-            box++;
+            // square.textContent = box;
+            // box++;
         }
     }
 
@@ -79,8 +98,8 @@ for (let i = 0; i < input; i++) {
 
         // square.style.cssText = `height: ${height}; width: ${width};`;
         // square.style.cssText = "height: 32px; width: 32px;";
-        square.textContent = box;
-        box++;
+        // square.textContent = box;
+        // box++;
         // elements[(i+1)*(j+1)] = square;
     }
 }
