@@ -14,19 +14,48 @@ r.style.setProperty("--square-width", `${width}px`);
 
 resizer.addEventListener("click", (e) => {
     let newInput = parseInt(prompt());
-    // if (newInput < 100) {
-    //     input = newInput;
-    // }
-    height = 500 / input;
-    width = 500 / input;
+    let product = newInput * newInput;
+    let index = 0;
+
+    // get new input and compare with the original input and if it's bigger add <p>s if it's smaller pop() out elements
+    // subtract newInput from input to get how much to pop() out and subtract input from newInput to get how much to add
+
+    // ACTUALLY input should be a base for the multiplication for example input = 9 then 9 x 9 and the product of which will be the number of squares
+
+    if (input > newInput) {
+        index = (squares.length-1) - product;
+        for (let i = 0; i <= index; i++) {
+            container.removeChild(container.lastElementChild);
+            squares.pop();
+        }
+    } else if (input < newInput) {
+        index = product - (squares.length-1);
+        for (let i = 1; i < index; i++) {
+            const square = document.createElement("div");
+            square.classList.add("square");
+            container.appendChild(square);
+            squares.push(square);
+            square.textContent = box;
+            box++;
+        }
+    }
+
+    // if (input < newInput && newInput < 100) {
+    //     index = newInput - input;
+    //     for (let i = 0; i < index; i++) {
+    //         const square = document.createElement("div");
+    //         square.classList.add("square");
+    //         container.appendChild(square);
+    //         squares[index] = square;
+    //         index++;
+    //     }
+
+    console.log(squares.length);
+
+    height = 500 / newInput;
+    width = 500 / newInput;
     r.style.setProperty("--square-height", `${height}px`);
     r.style.setProperty("--square-width", `${width}px`);
-    
-    if (input < newInput) {
-        input = newInput;
-    } else if (input > newInput) {
-        input = input - newInput;
-    }
 });
 
 // const rs = getComputedStyle(r);
