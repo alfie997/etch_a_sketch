@@ -5,8 +5,12 @@ const squares = [];
 
 let input = 16;
 
-let height = 500 / input;
-let width = 500 / input;
+let height = 0;
+let width = 0;
+
+// if ((input * input) % 2 == 0) {}
+height = (500 / input)-2;
+width = (500 / input)-2;
 
 const r = document.querySelector(":root");
 r.style.setProperty("--square-height", `${height}px`);
@@ -24,9 +28,11 @@ r.style.setProperty("--square-width", `${width}px`);
 resizer.addEventListener("click", (e) => {
     // let newInput = parseInt(prompt());
     let newInput = 0;
+    console.log(newInput);
     while (newInput <= 0 || newInput >= 101) {
-        newInput = prompt();
-        if (newInput === null) {
+        newInput = parseInt(prompt()); 
+        if (isNaN(newInput)) {
+            console.log(newInput);
             return;
         }
     }
@@ -46,6 +52,10 @@ resizer.addEventListener("click", (e) => {
             container.removeChild(container.lastElementChild);
             squares.pop();
         }
+        for (const square of squares) {
+            square.style.cssText = "background-color: none;"
+            // square.classList.remove("active");
+        }
     } else if (input < newInput) {
         input = newInput;
         index = product - (squares.length-1);
@@ -54,8 +64,13 @@ resizer.addEventListener("click", (e) => {
             square.classList.add("square");
             container.appendChild(square);
             squares.push(square);
+            
             // square.textContent = box;
             // box++;
+        }
+        for (const square of squares) {
+            square.style.cssText = "background-color: none;"
+            // square.classList.remove("active");
         }
     }
 
@@ -71,8 +86,8 @@ resizer.addEventListener("click", (e) => {
 
     console.log(squares.length);
 
-    height = 500 / newInput;
-    width = 500 / newInput;
+    height = (500 / newInput)-2;
+    width = (500 / newInput)-2;
     r.style.setProperty("--square-height", `${height}px`);
     r.style.setProperty("--square-width", `${width}px`);
 });
@@ -112,6 +127,7 @@ container.addEventListener("mouseenter", (e) => {
         if (square != undefined) {
             square.addEventListener("mousemove", (e) => {
                 square.style.cssText = "background-color: grey;";
+                // square.classList.add("active");
             });
         }
     }

@@ -9,12 +9,15 @@ body {
 
 .container {
     /* border: 1px solid red; */
+    /* position: absolute; */
     display: flex;
     flex-wrap: wrap;
-    height: 538px;
-    width: 538px;
+    align-content: start;
+    height: 500px;
+    width: 500px;
     /* height: 512px;
     width: 512px; */
+    overflow: hidden;
 }
 
 .square {
@@ -22,3 +25,7 @@ body {
     height: var(--square-height);
     width: var(--square-width);
 }
+
+/* .active {
+    background-color: grey;
+} */
