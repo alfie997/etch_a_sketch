@@ -2,6 +2,8 @@ const container = document.querySelector(".container");
 const resizer = document.querySelector(".resizer");
 const cleaner = document.querySelector(".cleaner");
 
+const form = document.querySelector("form");
+
 const squares = [];
 
 let input = 16;
@@ -85,8 +87,15 @@ console.log(squares.length);
 container.addEventListener("mouseenter", (e) => {
     for (const square of squares) {
         if (square != undefined) {
-            square.addEventListener("mousemove", (e) => {
-                square.style.cssText = "background-color: grey;";
+            square.addEventListener("mouseover", (e) => {
+                if (document.getElementById("modeTwo").checked) {
+                    let red = Math.floor(Math.random() * 255);
+                    let green = Math.floor(Math.random() * 255);
+                    let blue = Math.floor(Math.random() * 255);
+                    square.style.cssText = `background-color: rgb(${red}, ${green}, ${blue});`
+                } else {
+                    square.style.cssText = "background-color: grey;";
+                }
             });
         }
     }
