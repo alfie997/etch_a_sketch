@@ -3,7 +3,13 @@ const resizer = document.querySelector(".resizer");
 
 const squares = [];
 
+// let input = 29.5;
+
 let input = 16;
+
+let basis = 0;
+
+basis = 500 / input;
 
 let height = 0;
 let width = 0;
@@ -12,9 +18,17 @@ let width = 0;
 height = (500 / input)-2;
 width = (500 / input)-2;
 
+// height = 500 / (input+1);
+// width = 500 / (input+1)
+// console.log(basis);
+
+// height = (input / 500) * 100;
+// width = (input / 500) * 100;
+
 const r = document.querySelector(":root");
 r.style.setProperty("--square-height", `${height}px`);
 r.style.setProperty("--square-width", `${width}px`);
+r.style.setProperty("--square-basis", `${basis}px`);
 
 // function addSquares(index) {
 //     const square = document.createElement("div");
@@ -28,9 +42,9 @@ r.style.setProperty("--square-width", `${width}px`);
 resizer.addEventListener("click", (e) => {
     // let newInput = parseInt(prompt());
     let newInput = 0;
-    console.log(newInput);
     while (newInput <= 0 || newInput >= 101) {
-        newInput = parseInt(prompt()); 
+        newInput = parseInt(prompt());
+        console.log(newInput);
         if (isNaN(newInput)) {
             console.log(newInput);
             return;
@@ -39,11 +53,6 @@ resizer.addEventListener("click", (e) => {
 
     let product = newInput * newInput;
     let index = 0;
-
-    // get new input and compare with the original input and if it's bigger add <p>s if it's smaller pop() out elements
-    // subtract newInput from input to get how much to pop() out and subtract input from newInput to get how much to add
-
-    // ACTUALLY input should be a base for the multiplication for example input = 9 then 9 x 9 and the product of which will be the number of squares
 
     if (input > newInput) {
         index = (squares.length-1) - product;
@@ -88,6 +97,7 @@ resizer.addEventListener("click", (e) => {
 
     height = (500 / newInput)-2;
     width = (500 / newInput)-2;
+    console.log(width);
     r.style.setProperty("--square-height", `${height}px`);
     r.style.setProperty("--square-width", `${width}px`);
 });
