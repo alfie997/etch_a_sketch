@@ -6,17 +6,6 @@ const form = document.querySelector("form");
 
 const squares = [];
 
-let input = 16;
-
-let height = 0;
-let width = 0;
-
-height = (500 / input)-2;
-width = (500 / input)-2;
-
-const r = document.querySelector(":root");
-r.style.setProperty("--square-height", `${height}px`);
-r.style.setProperty("--square-width", `${width}px`);
 
 function addSquares() {
     const square = document.createElement("div");
@@ -30,6 +19,26 @@ function cleanSquares() {
         square.style.cssText = "background-color: none;"
     }
 }
+
+let input = 16;
+
+let height = 0;
+let width = 0;
+
+for (let i = 0; i < input; i++) {
+    for (let j = 0; j < input; j++) {
+        addSquares();
+    }
+}
+
+console.log(squares.length);
+
+height = (500 / input)-2;
+width = (500 / input)-2;
+
+const r = document.querySelector(":root");
+r.style.setProperty("--square-height", `${height}px`);
+r.style.setProperty("--square-width", `${width}px`);
 
 cleaner.addEventListener("click", (e) => {
     cleanSquares();
@@ -75,14 +84,7 @@ resizer.addEventListener("click", (e) => {
     r.style.setProperty("--square-width", `${width}px`);
 });
 
-for (let i = 0; i < input; i++) {
-    for (let j = 0; j < input; j++) {
-        addSquares();
-    }
-}
-
-console.log(squares[0]);
-console.log(squares.length);
+// let opacity = 0.1;
 
 container.addEventListener("mouseenter", (e) => {
     for (const square of squares) {
@@ -93,6 +95,75 @@ container.addEventListener("mouseenter", (e) => {
                     let green = Math.floor(Math.random() * 255);
                     let blue = Math.floor(Math.random() * 255);
                     square.style.cssText = `background-color: rgb(${red}, ${green}, ${blue});`
+                } else if (document.getElementById("modeThree").checked) {
+                    // if (square.style.cssText !== "background-color: black; opacity: 100%;") {
+                    // square.style.cssText = `background-color: black; opacity: ${opacity}%`;
+                    // square.style.cssText = "background-color: black; opacity: 10%;";
+
+                    // let style = getComputedStyle(square);
+                    // console.log(style.getPropertyValue("opacity"));
+                    // let value = parseInt(style.getPropertyValue("opacity"));
+
+                    // let opacity = 0.1;
+
+                    // let newOpacity = opacity;
+
+                    console.log(square.style.backgroundColor);
+
+                    // if (square.style.backgroundColor === "") {
+                    //     opacity = 0.1;
+                    // }
+
+                    // square.style.cssText =
+                    // `background-color: rgba(0, 0, 0, ${opacity});`;
+
+                    let value = square.style.backgroundColor;
+                    console.log(value);
+
+                    if (value !== "" && value !== "rgba(0, 0, 0)") {
+                        switch (value) {
+                            case "rgba(0, 0, 0, 0.1)":
+                                square.style.cssText =
+                                `background-color: rgba(0, 0, 0, 0.2);`;
+                                break;
+                            case "rgba(0, 0, 0, 0.2)":
+                                square.style.cssText =
+                                `background-color: rgba(0, 0, 0, 0.3);`;
+                                break;
+                            case "rgba(0, 0, 0, 0.3)":
+                                square.style.cssText =
+                                `background-color: rgba(0, 0, 0, 0.4);`;
+                                break;
+                            case "rgba(0, 0, 0, 0.4)":
+                                square.style.cssText =
+                                `background-color: rgba(0, 0, 0, 0.5);`;
+                                break;
+                            case "rgba(0, 0, 0, 0.5)":
+                                square.style.cssText =
+                                `background-color: rgba(0, 0, 0, 0.6);`;
+                                break;
+                            case "rgba(0, 0, 0, 0.6)":
+                                square.style.cssText =
+                                `background-color: rgba(0, 0, 0, 0.7);`;
+                                break;
+                            case "rgba(0, 0, 0, 0.7)":
+                                square.style.cssText =
+                                `background-color: rgba(0, 0, 0, 0.8);`;
+                                break;
+                            case "rgba(0, 0, 0, 0.8)":
+                                square.style.cssText =
+                                `background-color: rgba(0, 0, 0, 0.9);`;
+                                break;
+                            case "rgba(0, 0, 0, 0.9)":
+                                square.style.cssText =
+                                `background-color: rgba(0, 0, 0, 1);`;
+                                break;
+                        }
+                    } else {
+                        square.style.cssText =
+                        `background-color: rgba(0, 0, 0, 0.1);`;
+                    }
+                    // console.log(opacity);
                 } else {
                     square.style.cssText = "background-color: grey;";
                 }
